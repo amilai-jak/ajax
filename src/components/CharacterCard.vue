@@ -9,7 +9,7 @@ defineProps(['character']);
         </header>
         <div class="card-image">
             <figure class="image is-4by3">
-                <img :src="character.image" />
+                <img :src="character.image" :alt="character.name" loading="lazy" />
             </figure>
         </div>
         <div class="card-content">
@@ -18,11 +18,15 @@ defineProps(['character']);
                     <tbody>
                         <tr>
                             <th>Status</th>
-                            <td>{{ character.status }}</td>
+                            <td><span class="tag" :class="{
+                                'is-success': character.status === 'Alive',
+                                'is-danger': character.status === 'Dead',
+                                'is-light': character.status === 'unknown',
+                            }">{{ character.status }}</span></td>
                         </tr>
                         <tr>
                             <th>Gender</th>
-                            <td>{{ character.gender }}</td>
+                            <td><span class="tag is-info is-light">{{ character.gender }}</span></td>
                         </tr>
                         <tr>
                             <th>Type</th>
